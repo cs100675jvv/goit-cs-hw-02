@@ -17,7 +17,7 @@ log_file="website_status.log"
 for url in "${websites[@]}"
 do
     # Використання curl для отримання статусу відповіді (тільки заголовки)
-    status=$(curl -Is "$url" | head -n 1)
+    status=$(curl -o /dev/null -Isw '%{http_code}' "$url")
 
     # Перевірка наявності коду 200 OK у відповіді
     if [[ $status == *"200"* ]]; then
