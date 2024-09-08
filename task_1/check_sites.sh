@@ -22,10 +22,12 @@ do
     # Перевірка наявності коду 200 OK у відповіді
     if [[ $status == *"200"* ]]; then
         echo "<$url> is UP" | tee -a $log_file
+    elif [[ $status == *"301"* ]]; then
+        echo "<$url> is UP REDIRECTED" | tee -a $log_file
     else
         echo "<$url> is DOWN" | tee -a $log_file
     fi
 done
 
 # Після виконання виведення повідомлення
-echo "Результати записано у файл $log_file"
+echo "Результати записано у файл $log_file" | tee -a $log_file
