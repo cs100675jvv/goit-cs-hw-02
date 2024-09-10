@@ -12,7 +12,8 @@ log_file="website_status.log"
 
 # Очищення файлу перед записом нових результатів
 > $log_file
-
+date=$(date +%y/%m/%d_%H:%M:%S)
+echo -e "\nПеревіркa станом на $date" | tee -a $log_file
 # Перевірка доступності кожного вебсайту
 for url in "${websites[@]}"
 do
@@ -30,4 +31,4 @@ do
 done
 
 # Після виконання виведення повідомлення
-echo "Результати записано у файл $log_file" | tee -a $log_file
+echo "Результати записано у файл $log_file"
